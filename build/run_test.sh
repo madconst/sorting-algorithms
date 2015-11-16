@@ -2,8 +2,8 @@
 
 # Timeout in seconds after which the sorting process will be killed if still running:
 TIMEOUT=60 # 1800
-LOGFILE="results.log"
-CSVFILE="results.csv"
+LOGFILE="/dev/stdout"
+CSVFILE="results.tsv"
 
 declare -A RESULTS
 
