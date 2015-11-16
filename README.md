@@ -1,5 +1,5 @@
-Experimental Comparison of Sorting Algorithms
-=============================================
+Comparison of Sorting Algorithms
+================================
 
 The project includes:
 
