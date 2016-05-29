@@ -13,9 +13,7 @@ std::vector<T> read_values(const char* filename = "unsorted.bin")
     }
     std::vector<T> result;
     T number;
-    std::cout << "Reading file" << std::endl;
     while (fs.read(reinterpret_cast<char*>(&number), sizeof(T))) {
-        std::cout << "Read: " << number << std::endl;
         result.push_back(number);
     }
     return result;
