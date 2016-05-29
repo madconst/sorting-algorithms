@@ -1,23 +1,23 @@
 #include <fstream>
 #include <iterator>
-#include <string>
-#include <algorithm>
+#include <iostream>
 #include <vector>
 
-const char* default_filename = "unsorted.data";
-
 template <class T>
-std::vector<T> read_values(const char* filename = default_filename)
+std::vector<T> read_values(const char* filename = "unsorted.bin")
 {
-    std::fstream fs;
-    fs.open(filename, std::fstream::in);
+    std::ifstream fs;
+    fs.open(filename, std::ios::in | std::ios::binary);
+    if (!fs.is_open()) {
+        std::cerr << "Failed to open " << filename << std::endl;
+    }
     std::vector<T> result;
-    std::copy(
-    	std::istream_iterator<T>(fs), 
-    	std::istream_iterator<T>(), 
-    	std::back_inserter(result)
-    );
-    fs.close();
+    T number;
+    std::cout << "Reading file" << std::endl;
+    while (fs.read(reinterpret_cast<char*>(&number), sizeof(T))) {
+        std::cout << "Read: " << number << std::endl;
+        result.push_back(number);
+    }
     return result;
 }
 
