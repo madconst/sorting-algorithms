@@ -9,24 +9,6 @@
 static const size_t BUCKET_SIZE = 70;
 
 template <class T>
-void insertion_sort(std::vector<T>& v)
-{
-    if (v.empty()) {
-        return;
-    }
-
-    for (auto i = v.begin() + 1; i != v.end(); ++i) {
-        auto j = i;
-        while (j != v.begin()) {
-            if (*(j-1) > *j) {
-                std::iter_swap(j - 1, j);
-                --j;
-            } else break;
-        }
-    }
-}
-
-template <class T>
 static double normalized_position(T value)
 {
     T min = std::numeric_limits<T>::lowest();
@@ -50,8 +32,14 @@ void bucket_sort(typename std::vector<T>& data)
         double pos = normalized_position(data[i]);
         size_t bucket_number = pos * num_of_buckets;
         assert(bucket_number < num_of_buckets);
-        buckets[bucket_number].push_back(data[i]);
-        insertion_sort(buckets[bucket_number]);
+        auto& bucket = buckets[bucket_number];
+        bucket.push_back(data[i]);
+        // Swap down the inserted value to make the vector sorted:
+        size_t j = bucket.size() - 1;
+        while (j > 0 && bucket[j] < bucket[j-1]) {
+            std::swap(bucket[j-1], bucket[j]);
+            --j;
+        }
     }
 
     // Put sorted numbers into the source vector:
