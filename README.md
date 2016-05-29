@@ -18,8 +18,12 @@ Provided algorithms:
 - O(N*log(N)) algorithms:
   + quick sort
   + quick sort + insertion sort hybrid
-  + merge sort
+  + quick_sort + selection sort (just for fun)
+  + merge sort (iterative and recursive versions)
   + heap sort
+- non-comparison sorting algorithms:
+  + radix sort (base 16)
+  + bucket sort
 
 Compiling
 ---------
