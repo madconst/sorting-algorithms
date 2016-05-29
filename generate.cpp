@@ -1,8 +1,6 @@
 #include <fstream>
-#include <cstdlib>
-#include <ctime>
 #include <iostream>
-#include <string>
+#include <random>
 
 static const char filename[] = "unsorted.data";
 
@@ -21,10 +19,12 @@ int main(int argc, char* argv[])
     std::fstream fs;
     fs.open(filename, std::fstream::out);
 
-    std::srand(std::time(NULL));
+    std::random_device rd;
+    std::default_random_engine re(rd());
+    std::uniform_int_distribution<unsigned int> dist;
 
     for (unsigned int i = 0; i < nvalues; ++i) {
-        fs << std::rand() << " ";
+        fs << dist(re) << " ";
     }
 
     fs.close();
