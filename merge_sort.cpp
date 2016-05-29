@@ -33,7 +33,7 @@ void merge_two_ranges(typename std::vector<T>& from, typename std::vector<T>& to
 template <class T>
 void merge_sort(typename std::vector<T>& data)
 {
-    std::vector<unsigned> buffer(data.size());
+    std::vector<T> buffer(data.size());
     size_t end = data.size();
     for (size_t size = 1; size < data.size(); size *= 2) {
         size_t range_i;
