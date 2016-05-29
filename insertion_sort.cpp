@@ -25,7 +25,7 @@ void insertion_sort(std::vector<T>& v)
 
 int main(int argc, char* argv[])
 {
-    std::string source_file("unsorted.data");
+    std::string source_file("unsorted.bin");
     if (argc > 1) {
         source_file = argv[1];
         std::cout << "Reading data from " << source_file << std::endl;
